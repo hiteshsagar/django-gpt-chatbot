@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib import auth
@@ -5,6 +6,11 @@ from django.contrib.auth.models import User
 from .models import Chat
 import openai
 from django.utils import timezone
+=======
+from django.shortcuts import render
+from django.http import JsonResponse
+import openai
+>>>>>>> 8b0375ea12985bab33a155b15927a0ed40954fbb
 
 openai_api_key = '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'
 openai.api_key = openai_api_key
@@ -18,6 +24,7 @@ def ask_openai(message):
         stop = None,
         temperature = 0.7,
     )
+<<<<<<< HEAD
     # print(response)""
     answer = response.choice[0].text.strip()
     return answer
@@ -73,3 +80,16 @@ def register(request):
 def logout(request):
     auth.logout(request)
     return redirect('chatbot')
+=======
+    print(response)
+    # answer = response.choice[0].text.strip()
+    # return answer
+
+# Create your views here.
+def chatbot(request):
+    if request.method == 'POST':
+        message = request.POST.get('message')
+        response = ask_openai(message)
+        return JsonResponse({'message': message, 'response': response})
+    return render(request, 'chatbot.html')
+>>>>>>> 8b0375ea12985bab33a155b15927a0ed40954fbb
