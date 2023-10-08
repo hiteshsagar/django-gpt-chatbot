@@ -44,7 +44,8 @@ def login(request):
             return redirect('chatbot')
         else:
             error_message = 'Invalid username or password'
-            return render(request, 'login.html', {'error_message': error_message})
+            return render(request, 'login.html',
+                           {'error_message': error_message})
     return render(request, 'login.html')
 
 
